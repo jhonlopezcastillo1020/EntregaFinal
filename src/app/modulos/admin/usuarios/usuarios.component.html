@@ -1,0 +1,94 @@
+<div class="wrapper">
+    <!-- sidebar -->
+    <aside id="sidebar" [ngClass]="{collapsed: sidebarService.isCollapsed}">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!-- main component -->
+    <div class="main">
+        <app-navbar></app-navbar>
+        <main>
+            <div class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mt-3">
+                        <h3>Usuario</h3>
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark">
+
+                            </div>
+                            <div class="card-body m-3">
+                                <h3>Lista de usuarios</h3>
+                                <div class='table-responsive'>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-primary rounded-0" (click)="abrirModalUsuario()">
+                                            Agregar usuario
+                                        </button>
+
+                                    </div>
+
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>N°</th>
+                                                <th>Nombre</th>
+                                                <th>Correo</th>
+                                                <th>Rol</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let usuario of usuarios; let i = index">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{usuario.nombre}}</td>
+                                                <td>{{usuario.correo}}</td>
+                                                <td>{{usuario.rol}}</td>   
+                                                <td>
+                                                    <button class="btn btn-sm"
+                                                    [ngClass]="{'btn-success': usuario.estado === 'activo', 'btn-danger': usuario.estado === 'inactivo'}"
+                                                    type="button" (click)="actualizarEstado(usuario.id)"
+                                                    style="width: 90px;">
+                                                    {{usuario.estado === 'activo' ? 'Activo' : 'Inactivo'}}
+                                                </button>
+                                                </td>
+                                                <td>
+                                            
+
+                                                <button class="btn btn-warning btn-sm" type="button" (click)="abrirModalUsuarioEdictar(usuario.id)">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                        
+                                                <button class="btn btn-danger btn-sm" type="button" (click)="eliminarusuario(usuario.id)">
+                                                    <i class="fas fa-trash-alt btn-sm"></i>
+                                                </button>
+                                        
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+<app-modal-form-usuario></app-modal-form-usuario>

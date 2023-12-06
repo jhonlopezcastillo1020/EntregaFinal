@@ -1,0 +1,25 @@
+    <nav class="navbar navbar-expand px-3 border-bottom">
+        <!-- button for sidebar toogle -->
+        <button class="btn me-auto" type="button" data-bs-theme="light" (click)="toggleSidebar()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    
+        <div class="dropdown  dropstart">
+            <a class="dropdown-toggle text-light" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-user fa-1x rounded-circle p-3 bg-dark text-white"></i>
+
+            </a>
+            <ul class="dropdown-menu  dropdown-menu-dark" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item">Perfil</a></li>
+                <!-- <li><a class="dropdown-item" href="#">Configuración</a></li> -->
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li (click)="logout()"><a class="dropdown-item" >Cerrar Sesión</a></li>
+            </ul>
+        </div>
+
+
+    </nav>

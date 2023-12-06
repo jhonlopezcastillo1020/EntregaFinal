@@ -1,0 +1,85 @@
+<div class="wrapper">
+    <!-- sidebar -->
+    <aside id="sidebar" [ngClass]="{collapsed: sidebarService.isCollapsed}">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!-- main component -->
+    <div class="main">
+        <app-navbar></app-navbar>
+        <main>
+            <div class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mt-3">
+                        <h3>Encuesta  </h3>
+                  
+               
+                    </div>
+                    <ng-container *ngIf="!instancia">
+                          
+                        <div class="alert alert-danger " role="alert">
+                            <strong> Esta encuesta ya finalizo</strong>
+                        </div>
+                        
+                    </ng-container>
+
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark">
+
+                            </div>
+                            <div class="card-body m-3" >
+
+                                <h4 class="card-title">Datos encuesta:</h4>
+                                <p class="card-text">
+                                    <span class="text-muted">Título:</span> <strong>{{encuesta?.titulo}}</strong><br>
+                                    <span class="text-muted">Descripción:</span> {{encuesta?.descripcion}}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-center align-items-center g-2 mt-4">
+                            <div class="col-md-4">
+
+                                <div class="card mb-3">
+                                    <div class="card-header bg-dark">
+
+                                    </div>
+                                    <div class="card-body m-3 overflow-auto" style="height: 400px;" >
+
+                                        <h4 class="text-center mt-2">Secciones</h4>
+                                        <app-seccion (evento)="onPregunta($event)"></app-seccion>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-8">
+
+                                <div class="card mb-3">
+                                    <div class="card-header bg-dark">
+
+                                    </div>
+
+                                    <div class="card-body m-3 overflow-auto" style="height: 400px;">
+                                        <h4>Preguntas</h4>
+                                        <app-pregunta [pregunta]="pregunta"></app-pregunta>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+</div>

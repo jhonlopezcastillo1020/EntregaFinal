@@ -1,0 +1,102 @@
+<div class="wrapper">
+    <!-- sidebar -->
+    <aside id="sidebar" [ngClass]="{collapsed: sidebarService.isCollapsed}">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!-- main component -->
+    <div class="main">
+        <app-navbar></app-navbar>
+        <main>
+            <div class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mt-3">
+                        <h3>estudiante</h3>
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark">
+
+                            </div>
+                            <div class="card-body m-3">
+                                <h3>Lista de estudiantes</h3>
+                                <div class='table-responsive'>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-primary rounded-0" (click)="abrirModal()">
+                                            Agregar estudiante
+                                        </button>
+
+                                    </div>
+
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>N°</th>
+                                                <th>Codigo</th>
+                                                <th>Nombre</th>
+                                                <th>Institucion</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let estudiante of estudiantes; let i = index">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{estudiante.id}}</td>
+                                                <td>
+                                                    <ng-container *ngFor="let  usuario of usuarios">
+                                                        <ng-container *ngIf="usuario.id===estudiante.usuario_id">
+                                                            {{usuario.nombre}}
+                                                        </ng-container> 
+                                                    </ng-container>
+                                                </td>
+                                                <td>
+                                                    <ng-container *ngFor="let  institucion of instituciones">
+                                                        <ng-container *ngIf="institucion.id===estudiante.institucion_id">
+                                                            {{institucion.nombre}}
+                                                        </ng-container> 
+                                                    </ng-container>
+                                                </td>
+                                             
+                                            
+                                                <td>
+                                            
+                            
+                                                <button class="btn btn-warning btn-sm" type="button" (click)="abrirModalEdictar(estudiante.id)">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                        
+                                                <button class="btn btn-danger btn-sm" type="button" (click)="eliminarEstudiante(estudiante.id)">
+                                                    <i class="fas fa-trash-alt btn-sm"></i>
+                                                </button>
+                                        
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+<app-modal-form-estudiante></app-modal-form-estudiante>
+
+
+

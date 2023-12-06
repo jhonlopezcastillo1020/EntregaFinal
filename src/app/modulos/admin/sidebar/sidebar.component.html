@@ -1,0 +1,88 @@
+<div class="h-100">
+  <div class="sidebar-logo">
+    <a [routerLink]="['/manager']">AppEncuesta</a>
+  </div>
+
+  <!-- sidebar navigation -->
+  <ul class="sidebar-nav">
+    <li class="sidebar-header">
+      Menu
+    </li>
+
+    <li class="sidebar-item" routerLinkActive="active" *ngIf="this.perfil?.rol==='Estudiante'">
+      <a [routerLink]="['/manager/encuesta']" class="sidebar-link">
+        <i class="fa-solid fa-list pe-2"></i>
+        Tu encuesta
+      </a>
+    </li>
+    <li class="sidebar-item" *ngIf="this.perfil?.rol==='Admin'">
+      <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pageGestion"
+        aria-expanded="false" aria-controls="pageGestion">
+        <i class="fa-regular fa-file-lines pe-2"></i>
+        Gestion Encuestas
+      </a>
+      <ul id="pageGestion" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#accordionExample">
+        <li class="sidebar-item" routerLinkActive="active">
+          <a href="#" class="sidebar-link gestion-encuesta-submenu" [routerLink]="['/manager/gestionEncuesta']"><i
+              class="fa-solid fa-minus me-2"></i>Encuestas</a>
+
+        </li>
+        <li class="sidebar-item" routerLinkActive="active">
+          <a href="#" class="sidebar-link" [routerLink]="['/manager/gestionSeccion']"><i
+              class="fa-solid fa-minus me-2"></i>Secciones</a>
+
+        </li>
+
+      </ul>
+    </li>
+    <li class="sidebar-item" routerLinkActive="active" *ngIf="this.perfil?.rol==='Admin'">
+      <a class="sidebar-link" [routerLink]="['/manager/institucion']">
+        <i class="fa-solid fa-school pe-2"></i>
+        Instituciones
+      </a>
+    </li>
+
+    <li class="sidebar-item" *ngIf="this.perfil?.rol==='Admin'">
+      <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pageUsuarios"
+        aria-expanded="false" aria-controls="pageUsuarios">
+        <i class="fa-solid fa-users pe-2"></i>
+        Usuarios
+      </a>
+      <ul id="pageUsuarios" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#accordionExample">
+        <li class="sidebar-item" routerLinkActive="active ">
+          <a class="sidebar-link" [routerLink]="['/manager/cuentas']"><i class="fa-solid fa-minus me-2"></i>Cuentas</a>
+
+        </li>
+        <li class="sidebar-item" routerLinkActive="active">
+          <a href="#" class="sidebar-link" [routerLink]="['/manager/usuario/encuestadores']"><i
+              class="fa-solid fa-minus me-2"></i>Encuestadores</a>
+
+        </li>
+
+        <li class="sidebar-item" routerLinkActive="active" *ngIf="this.perfil?.rol==='Admin'">
+          <a href="#" class="sidebar-link" [routerLink]="['/manager/usuario/estudiantes']"><i
+              class="fa-solid fa-minus me-2"></i>Estudiantes</a>
+
+        </li>
+      </ul>
+    </li>
+
+ 
+    <li class="sidebar-item" routerLinkActive="active" *ngIf="this.perfil?.rol==='Encuestador'">
+      <a class="sidebar-link" [routerLink]="['/manager/instancia']">
+        <i class="fa-solid fa-gears"></i>
+        Instancias
+      </a>
+    </li>
+  </ul>
+
+
+
+  <div class="sidebar-bottom">
+
+    <span class="user-name fw-bold me-2">{{this.perfil?.rol}}:</span>
+    <span class="user-value">{{ this.perfil?.nombre }}</span>
+  </div>
+
+
+</div>

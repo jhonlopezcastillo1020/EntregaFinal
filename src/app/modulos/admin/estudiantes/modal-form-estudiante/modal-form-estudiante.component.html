@@ -1,0 +1,65 @@
+<!-- Modal -->
+<div class="modal fade" id="modalEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">{{title}} estudiante</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioEstudiante" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Codigo</label>
+                        <input type="text" class="form-control" id="codigo" formControlName="codigo">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('codigo', 'required') && isTouched('codigo')">
+                                El codigo es obligatorio.
+                            </div>
+                            <div *ngIf="hasError('codigo', 'minlength')||hasError('codigo', 'maxlength')">
+                                El codigo debe 6 caracteres.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estudiante" class="form-label">Selecione usuario</label>
+                        <select class="form-select" id="estudiante" formControlName="estudiante"
+                            aria-label="Seleccione el estudiante">
+                            <option value="" disabled selected>Seleccione usuario</option>
+                            <option  *ngFor="let usuario of usuarios" [value]="usuario.id">{{usuario.nombre}}</option>
+                     
+                        </select>
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('estudiante', 'required') && isTouched('estudiante')">
+                                Seleccione un usuario.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="institucion" class="form-label">institucion</label>
+                        <select class="form-select" id="institucion" formControlName="institucion"
+                            aria-label="Seleccione el estudiante">
+                            <option value="" disabled selected>Seleccione institucion</option>
+                            <option  *ngFor="let institucion of instituciones" [value]="institucion.id">{{institucion.nombre}}</option>
+                     
+                        </select>
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('institucion', 'required') && isTouched('institucion')">
+                                Seleccione la institucion.
+                            </div>
+                        </small>
+                    </div>
+                    <!-- Resto del formulario -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="formularioEstudiante.invalid">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

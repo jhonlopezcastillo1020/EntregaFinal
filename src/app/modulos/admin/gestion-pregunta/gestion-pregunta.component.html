@@ -1,0 +1,176 @@
+<div class="wrapper">
+    <!-- sidebar -->
+    <aside id="sidebar" [ngClass]="{collapsed: sidebarService.isCollapsed}">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!-- main component -->
+    <div class="main">
+        <app-navbar></app-navbar>
+        <main>
+            <div class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mt-3">
+                        <h3>Gestionar preguntas</h3>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header bg-dark text-white">
+                            <!-- Puedes agregar contenido al encabezado si es necesario -->
+                        </div>
+                        <div class="card-body m-3">
+                            <h4 class="card-title">Datos encuesta:</h4>
+                            <p class="card-text">
+                                <span class="text-muted">Título:</span> <strong>{{encuesta?.titulo}}</strong><br>
+                                <span class="text-muted">Descripción:</span> {{encuesta?.descripcion}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center g-2">
+                        <div class="col-md-lg-4 col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header bg-dark">
+
+                                </div>
+                                <div class="card-body m-3 overflow-auto" style="height: 450px;">
+                                    <h4>Secciones</h4>
+
+                                    <app-seccion (evento)="onPregunta($event)"></app-seccion>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-lg-8 col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-header bg-dark">
+
+                                </div>
+
+                                <div class="card-body m-3 overflow-auto" style="height: 450px;">
+                                    <h4>Formulario preguntas:</h4>
+                                    <div class="mt-3">
+                                        <form [formGroup]="crearPregunta" (ngSubmit)="agregarPregunta()">
+                                            <div class="mb-3">
+                                                <label for="texto" class="form-label">Pregunta</label>
+                                                <input type="text" class="form-control" formControlName="texto"
+                                                    aria-describedby="texto" placeholder="Pregunta">
+                                                <small class="text-danger">{{ getErrorMensajePregunta() }}</small>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="row g-2">
+                                                    <div class="col-lg-4"> <label for="seccion"
+                                                            class="form-label">Seccion</label>
+                                                        <select class="form-select" formControlName="seccion"
+                                                            id="seccion">
+                                                            <option selected value="">Seleccione</option>
+                                                            <option *ngFor="let seccion of secciones"
+                                                                [value]="seccion.id">{{seccion.nombre}}</option>
+
+                                                        </select>
+                                                        <small class="text-danger">{{ getErrorMensajeSeccion() }}</small>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label for="tipo" class="form-label">Tipo</label>
+                                                        <select class="form-select" formControlName="tipo">
+                                                            <option selected value="">Seleccione</option>
+                                                            <option value="cerrada">Respuesta simple</option>
+                                                            <option value="abierta">Campos abiertos</option>
+                                                            <option value="multiple">Opcion multiple</option>
+
+                                                        </select>
+                                                        <small class="text-danger">{{ getErrorMensajeTipo() }}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <button type="button" class="btn btn-primary rounded-1" style="width: 100px;">Agregar</button> -->
+
+                                            <div [ngSwitch]="crearPregunta.value.tipo">
+                                                <div *ngSwitchCase="'cerrada'">
+                                                    <div class="mb-3">
+
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Texto respuesta corta" disabled>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'abierta'">
+                                                    <div class="mb-3">
+
+                                                        <textarea class="form-control" rows="3" disabled
+                                                            placeholder="Texto de respuesta largo "></textarea>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'multiple'">
+                                                    <div formArrayName="opciones">
+                                                        <div *ngFor="let opcion of opciones.controls; let i = index">
+                                                            <div class="form-check mb-2 d-flex">
+
+                                                                <i class="fa-regular fa-circle fa-lg me-2 pt-3"></i>
+
+                                                                <input type="text" class="form-control me-2"
+                                                                    [formControlName]="i"
+                                                                    [placeholder]="'Opcion ' + (i + 1)">
+
+                                                                <button type="button" class="btn-close pt-3"
+                                                                    aria-label="Close"
+                                                                    *ngIf="opciones.controls.length>1"
+                                                                    (click)="eliminarOpcion(i)"></button>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-check mt-4">
+
+                                                            <div (click)="agregarOpcion()">
+                                                                Agregar opcion
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div *ngSwitchDefault></div>
+                                            </div>
+                                            <!-- Grupo de botones -->
+                                            <div class="mt-4">
+                                                <!-- Botón Crear -->
+                                                <button type="submit" class="btn btn-primary rounded-1"
+                                                    [disabled]="preguntaid || crearPregunta.invalid" style="width: 110px;">Crear</button>
+
+                                                <!-- Botón Editar -->
+                                                <button type="button" class="btn btn-warning rounded-1 ms-2 "
+                                                    [disabled]="!preguntaid" (click)="editarPregunta(preguntaid)"
+                                                    style="width: 110px;">
+                                                    Actualizar
+                                                </button>
+
+                                                <!-- Botón Eliminar -->
+                                                <button type="button" class="btn btn-danger rounded-1 ms-2"
+                                                    [disabled]="!preguntaid" style="width: 110px;"
+                                                    (click)="eliminarPregunta(preguntaid)">
+                                                    Eliminar
+                                                </button>
+
+                                                <button type="button" class="btn btn-secondary rounded-1 ms-2"
+                                                    style="width: 110px;" (click)="limpiarFormulario()">Limpiar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+
+
+
+    </div>
+
+</div>

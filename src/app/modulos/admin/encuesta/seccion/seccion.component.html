@@ -1,0 +1,34 @@
+
+<div class="border m-4 g-2">
+<div class="accordion accordion-flush" id="accordionFlushExample">
+        <ng-container *ngFor="let seccion of seccions; let i = index">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#item' + i" aria-expanded="false" [attr.aria-controls]="'#item' + i">
+                        {{ seccion.nombre }}
+                    </button>
+                </h2>
+                <ul [id]="'item' + i" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <ng-container *ngFor="let pregunta of preguntas;let j=index">
+                        <ng-container *ngIf="pregunta.seccion_id == seccion.id">
+                            <li (click)="onPregunta(pregunta)"
+                                [ngClass]="{'selected': pregunta === preguntaSeleccionada}"
+                                class="accordion-body"  data-bs-toggle="tooltip" data-bs-placement="right" [title]="'¿'+pregunta.texto +'?'">
+                                <i class="fas fa-question-circle me-2" ></i>
+                                <span>Pregunta {{j+1 }}</span>
+
+                                
+                            </li>
+                        </ng-container>
+                   
+                      
+                    </ng-container>
+                   
+                </ul>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

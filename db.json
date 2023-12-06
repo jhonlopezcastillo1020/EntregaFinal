@@ -1,0 +1,374 @@
+{
+  "usuario": [
+    {
+      "nombre": "John Doe",
+      "correo": "admin@example.com",
+      "clave": "123456",
+      "estado": "activo",
+      "rol": "Admin",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Jane Smith",
+      "correo": "jane.smith@example.com",
+      "clave": "hashed_password",
+      "rol": "Encuestador",
+      "estado": "activo"
+    },
+    {
+      "id": 3,
+      "nombre": "Alice Johnson",
+      "correo": "alice@example.com",
+      "clave": "123456",
+      "rol": "Estudiante",
+      "estado": "activo"
+    },
+    {
+      "id": 4,
+      "nombre": "Bob Anderson",
+      "correo": "bob.anderson@example.com",
+      "clave": "hashed_password",
+      "rol": "Estudiante",
+      "estado": "activo"
+    },
+    {
+      "id": 5,
+      "nombre": "Eva Davis",
+      "correo": "eva@example.com",
+      "clave": "123456",
+      "rol": "Encuestador",
+      "estado": "activo"
+    },
+    {
+      "id": 6,
+      "nombre": "Carlos Ramirez",
+      "correo": "carlos@example.com",
+      "clave": "123456",
+      "rol": "Estudiante",
+      "estado": "activo"
+    },
+    {
+      "nombre": "Sara Martinez",
+      "correo": "sara.martinez@example.com",
+      "clave": "hashed_password",
+      "estado": "activo",
+      "rol": "Encuestador",
+      "id": 7
+    },
+    {
+      "id": 8,
+      "nombre": "David Brown",
+      "correo": "david.brown@example.com",
+      "clave": "123456",
+      "rol": "Encuestador",
+      "estado": "activo"
+    },
+    {
+      "id": 9,
+      "nombre": "Linda Wilson",
+      "correo": "linda@example.com",
+      "clave": "123456",
+      "rol": "Estudiante",
+      "estado": "activo"
+    },
+    {
+      "nombre": "Frank Taylor",
+      "correo": "frank.taylor@example.com",
+      "clave": "hashed_password",
+      "estado": "activo",
+      "rol": "Estudiante",
+      "id": 10
+    }
+  ],
+  "institucion": [
+    {
+      "nombre": "Universidad XYZ",
+      "direccion": "Dirección de la universidad",
+      "estado": "activo",
+      "id": 1
+    },
+    {
+      "nombre": "Prueba",
+      "direccion": "carrera 37  46-68",
+      "estado": "activo",
+      "id": 2
+    },
+    {
+      "nombre": "Sofonia",
+      "direccion": "carrera 44",
+      "estado": "activo",
+      "id": 3
+    }
+  ],
+  "asignacion": [
+    {
+      "usuario_id": 2,
+      "institucion_id": 2,
+      "estado": "asignado",
+      "id": 1
+    },
+    {
+      "usuario_id": 5,
+      "institucion_id": 2,
+      "estado": "asignado",
+      "id": 2
+    }
+  ],
+  "encuesta": [
+    {
+      "titulo": "Encuesta de satisfacción",
+      "descripcion": "Encuesta xxxx",
+      "estado": "activo",
+      "id": 1
+    },
+    {
+      "titulo": "Encuesta de prueba 3",
+      "descripcion": "Esta es la descripcion para la prueba",
+      "estado": "activo",
+      "id": 2
+    },
+    {
+      "titulo": "Encuesta hinchas futbol",
+      "descripcion": "Determinar hinchas",
+      "estado": "activo",
+      "id": 3
+    }
+  ],
+  "seccion": [
+    {
+      "nombre": "Seccion 1",
+      "encuesta_id": 1,
+      "estado": "activo",
+      "id": 1
+    },
+    {
+      "nombre": "Seccion 2",
+      "encuesta_id": 1,
+      "estado": "activo",
+      "id": 2
+    },
+    {
+      "nombre": "Socioeconomica",
+      "encuesta_id": 2,
+      "estado": "activo",
+      "id": 3
+    },
+    {
+      "nombre": "Seccion 3",
+      "encuesta_id": 2,
+      "estado": "activo",
+      "id": 4
+    },
+    {
+      "nombre": "General ",
+      "encuesta_id": 3,
+      "estado": "activo",
+      "id": 5
+    }
+  ],
+  "pregunta": [
+    {
+      "texto": "Cual es tu letra favorita",
+      "seccion_id": "1",
+      "tipo": "multiple",
+      "opciones": [
+        {
+          "id": 1,
+          "texto": "a"
+        },
+        {
+          "id": 2,
+          "texto": "b"
+        },
+        {
+          "id": 3,
+          "texto": "c"
+        }
+      ],
+      "estado": "activo",
+      "id": 1
+    },
+    {
+      "texto": "color favorito",
+      "seccion_id": "1",
+      "tipo": "multiple",
+      "opciones": [
+        {
+          "id": 1,
+          "texto": "rojo"
+        },
+        {
+          "id": 2,
+          "texto": "verde"
+        },
+        {
+          "id": 3,
+          "texto": "negro"
+        }
+      ],
+      "estado": "activo",
+      "id": 2
+    },
+    {
+      "texto": "Escribe tu correo",
+      "seccion_id": "2",
+      "tipo": "cerrada",
+      "opciones": [],
+      "estado": "activo",
+      "id": 3
+    },
+    {
+      "texto": "Cual es tu opicion de la economia",
+      "seccion_id": "2",
+      "tipo": "abierta",
+      "opciones": [],
+      "estado": "activo",
+      "id": 4
+    },
+    {
+      "texto": "Pruebas",
+      "seccion_id": "4",
+      "tipo": "abierta",
+      "opciones": [],
+      "estado": "activo",
+      "id": 5
+    },
+    {
+      "texto": "prueba",
+      "seccion_id": "1",
+      "tipo": "cerrada",
+      "opciones": [],
+      "estado": "activo",
+      "id": 6
+    },
+    {
+      "texto": "lklk",
+      "seccion_id": "1",
+      "tipo": "cerrada",
+      "opciones": [],
+      "estado": "activo",
+      "id": 7
+    },
+    {
+      "texto": "kllk",
+      "seccion_id": "2",
+      "tipo": "multiple",
+      "opciones": [
+        {
+          "id": 1,
+          "texto": "lklk"
+        },
+        {
+          "id": 2,
+          "texto": "klkk"
+        },
+        {
+          "id": 3,
+          "texto": "kjklk"
+        },
+        {
+          "id": 4,
+          "texto": "lkjk"
+        }
+      ],
+      "estado": "activo",
+      "id": 8
+    },
+    {
+      "texto": "Que equipo tiene mas hinchas",
+      "seccion_id": "5",
+      "tipo": "multiple",
+      "opciones": [
+        {
+          "id": 1,
+          "texto": "America"
+        },
+        {
+          "id": 2,
+          "texto": "Nacional"
+        },
+        {
+          "id": 3,
+          "texto": "Millonarios"
+        }
+      ],
+      "estado": "activo",
+      "id": 9
+    },
+    {
+      "texto": "Cual es tu equipo favorito",
+      "seccion_id": "5",
+      "tipo": "cerrada",
+      "opciones": [],
+      "estado": "activo",
+      "id": 10
+    }
+  ],
+  "estudiante": [
+    {
+      "id": "E00001",
+      "usuario_id": 6,
+      "institucion_id": 1
+    },
+    {
+      "id": "544555",
+      "usuario_id": 3,
+      "institucion_id": 1
+    },
+    {
+      "id": "E00002",
+      "usuario_id": 4,
+      "institucion_id": 2
+    },
+    {
+      "id": "444445",
+      "usuario_id": 9,
+      "institucion_id": 2
+    }
+  ],
+  "instancia": [
+    {
+      "id": 1,
+      "encuesta_id": 1,
+      "fecha_inicio": "2023-11-22T00:00:00.000Z",
+      "fecha_fin": "2023-11-30T23:59:59.999Z",
+      "estudiante_codigo": "E00001",
+      "instancia_id": 1,
+      "asignacion_id": 5,
+      "estado": "abierta",
+      "respuestas": []
+    },
+    {
+      "encuesta_id": "1",
+      "fecha_inicio": "2023-12-02T15:19:26.478Z",
+      "fecha_fin": "2023-12-02T15:19:00.000Z",
+      "asignacion_id": 5,
+      "estudiante_codigo": "E00002",
+      "estado": "abierta",
+      "id": 2,
+      "respuestas": []
+    },
+    {
+      "encuesta_id": "3",
+      "fecha_inicio": "2023-12-06T00:05:25.741Z",
+      "fecha_fin": "2023-12-07T00:05:00.000Z",
+      "estudiante_codigo": "",
+      "estado": "cerrada",
+      "respuestas": [
+        {
+          "texto_respuesta": "America",
+          "pregunta_id": 9,
+          "instancia_id": 3
+        },
+        {
+          "texto_respuesta": "america",
+          "pregunta_id": 10,
+          "instancia_id": 3
+        }
+      ],
+      "asignacion_id": 5,
+      "id": 3
+    }
+  ]
+}

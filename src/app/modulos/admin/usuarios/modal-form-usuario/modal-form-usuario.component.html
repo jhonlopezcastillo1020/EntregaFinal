@@ -1,0 +1,77 @@
+<!-- Modal -->
+<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">{{title}} Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioUsuario" (ngSubmit)="onSubmit()">
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('nombre', 'required') && isTouched('nombre')">
+                                El nombre es obligatorio.
+                            </div>
+                            <div *ngIf="hasError('nombre', 'minlength')">
+                                El nombre debe tener al menos 8 caracteres.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" formControlName="correo">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('correo', 'required') && isTouched('correo')">
+                                El correo es obligatorio.
+                            </div>
+                            <div *ngIf="hasError('correo', 'email')">
+                                El dato ingresado no corresponde con un correo.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="clave" class="form-label">Clave</label>
+                        <input type="password" class="form-control" id="clave" formControlName="clave">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('clave', 'required') && isTouched('clave')">
+                                La clave es obligatorio.
+                            </div>
+                            <div *ngIf="hasError('clave', 'minlength')">
+                                La clave debe tener al menos 6 caracteres.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <select class="form-select" id="rol" formControlName="rol"
+                            aria-label="Seleccione el rol">
+                            <option value="" disabled selected>Seleccione un rol</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Encuestador">Encuestador</option>
+                            <option value="Estudiante">Estudiante</option>
+                     
+                        </select>
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('rol', 'required') && isTouched('rol')">
+                                Seleccione un rol.
+                            </div>
+                        </small>
+                    </div>
+                    <!-- Resto del formulario -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="formularioUsuario.invalid">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

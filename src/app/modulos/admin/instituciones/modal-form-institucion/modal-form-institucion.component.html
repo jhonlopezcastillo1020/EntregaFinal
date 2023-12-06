@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal fade" id="modalInstitucion" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">{{title}} institución</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioInstitucion" (ngSubmit)="onSubmit()">
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('nombre', 'required') && isTouched('nombre')">
+                                El nombre es obligatorio.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" id="direccion" formControlName="direccion">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('direccion', 'required') && isTouched('direccion')">
+                                La direccion es obligatoria.
+                            </div>
+                        </small>
+                    </div>
+                 
+                    <!-- Resto del formulario -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="formularioInstitucion.invalid">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

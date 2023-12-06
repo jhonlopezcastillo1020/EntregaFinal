@@ -1,0 +1,101 @@
+<div class="wrapper">
+    <!-- sidebar -->
+    <aside id="sidebar" [ngClass]="{collapsed: sidebarService.isCollapsed}">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!-- main component -->
+    <div class="main">
+        <app-navbar></app-navbar>
+        <main>
+            <div class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mt-3">
+                        <h3>Encuestas</h3>
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark">
+
+                            </div>
+                            <div class="card-body m-3">
+                                <h3>Lista de encuestas</h3>
+                                <div class='table-responsive'>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-primary rounded-0" (click)="abrirModalEncuesta()">
+                                            Agregar encuesta
+                                        </button>
+
+                                    </div>
+
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>N°</th>
+                                                <th>Titulo</th>
+                                                <th>Descripcion</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let encuesta of encuestas;let i=index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{encuesta.titulo}}</td>
+                                                <td>{{encuesta.descripcion}}</td>
+                                                <td>   <button
+                                                    class="btn btn-sm"
+                                                    [ngClass]="{'btn-success': encuesta .estado === 'activo', 'btn-danger': encuesta .estado === 'inactivo'}"
+                                                    type="button" 
+                                                    (click)="actualizarEstado(encuesta  .id)"
+                                                    style="width: 90px;"
+                                                  
+                                                    >
+                                                    {{encuesta  .estado === 'activo' ? 'Activo' : 'Inactivo'}}
+                                                </button></td>   
+                           
+                                                <td>
+                                            
+
+                                                <button class="btn btn-warning btn-sm" type="button" (click)="abrirModalEncuestaEdictar(encuesta.id)">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                        
+                                                <button class="btn btn-danger btn-sm" type="button" (click)="eliminarEncuesta(encuesta.id)">
+                                                    <i class="fas fa-trash-alt btn-sm"></i>
+                                                </button>
+                                        
+                                                <a class="btn btn-info btn-sm" type="button" [routerLink]="['/manager/gestionPregunta',encuesta.id]">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    
+
+</div>
+
+<app-modal-form-encuesta ></app-modal-form-encuesta>
+

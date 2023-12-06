@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
+  <form class="col-12 col-md-6 col-lg-4 login-bg p-4" [formGroup]="loginForm" (ngSubmit)="login()">
+    <h2 class="text-center mb-4 text-white">Iniciar Sesión</h2>
+    <div class="mb-3">
+      <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" formControlName="email">
+      <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="text-danger">
+        El correo electrónico es obligatorio.
+      </div>
+      <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="text-danger">
+        Por favor, ingrese un correo electrónico válido.
+      </div>
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
+      <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="text-danger">
+        La contraseña es obligatoria.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary form-control"   [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    <span *ngIf="loginResultMessage" class="text-danger">{{ loginResultMessage }}</span>
+  </form>
+</div>

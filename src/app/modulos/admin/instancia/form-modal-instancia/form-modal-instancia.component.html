@@ -1,0 +1,70 @@
+<!-- Modal -->
+<div class="modal fade" id="modalInstancia" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+    aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">{{title}} instancia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ng-container *ngIf="estudiantes.length>0 && encuestas.length>0">
+                    <form [formGroup]="formularioInstancia" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="fechaFin" class="form-label">Name</label>
+                            <input type="datetime-local" formControlName="fechaFin" class="form-control">
+                            <small class="form-text text-danger">
+                                <div *ngIf="hasError('fechaFin','required') && isTouched('fechaFin')">
+                                    La fecha es obligatoria.
+                                </div>
+
+                            </small>
+
+                        </div>
+
+                        <ng-container *ngIf="this.Id === null">
+                            <div class="mb-3">
+                                <label for="estudiante" class="form-label">Selecione estudiante</label>
+                                <select class="form-select" id="estudiante" formControlName="estudiante"
+                                    aria-label="Seleccione el estudiante">
+                                    <option value="" disabled selected>Seleccione estudiante</option>
+                                    <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">
+                                        {{estudiante.id}}</option>
+
+                                </select>
+                                <small class="form-text text-danger">
+                                    <div *ngIf="hasError('estudiante', 'required') && isTouched('estudiante')">
+                                        Seleccione un estudiante.
+                                    </div>
+                                </small>
+                            </div>
+                        </ng-container>
+
+                        <div class="mb-3">
+                            <label for="encuesta" class="form-label">Selecione encuesta</label>
+                            <select class="form-select" id="encuesta" formControlName="encuesta"
+                                aria-label="Seleccione el encuesta">
+                                <option value="" disabled selected>Seleccione encuesta</option>
+                                <option *ngFor="let encuesta of encuestas" [value]="encuesta.id">{{encuesta.titulo}}
+                                </option>
+
+                            </select>
+                            <small class="form-text text-danger">
+                                <div *ngIf="hasError('encuesta', 'required') && isTouched('encuesta')">
+                                    Seleccione un encuesta.
+                                </div>
+                            </small>
+                        </div>
+                        <!-- Resto del formulario -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="formularioInstancia.invalid">Guardar</button>
+                        </div>
+                    </form>
+                </ng-container>
+          
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!-- Modal -->
+<div class="modal fade" id="modalAsignacion" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">{{title}} Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioAsignar" (ngSubmit)="onSubmit()">
+                    <ng-container *ngIf="this.Id===null">
+                        <div class="mb-3">
+                            <label for="encuestador" class="form-label">Encuestador</label>
+                            <select class="form-select" id="encuestador" formControlName="encuestador"
+                                aria-label="Seleccione el encuestador">
+                                <option value="" disabled selected>Seleccione encuestador</option>
+                                <option  *ngFor="let usuario of usuarios" [value]="usuario.id">{{usuario.nombre}}</option>
+                         
+                            </select>
+                            <small class="form-text text-danger">
+                                <div *ngIf="hasError('encuestador', 'required') && isTouched('encuestador')">
+                                    Seleccione un encuestador.
+                                </div>
+                            </small>
+                        </div>
+                    </ng-container>
+                    <div class="mb-3">
+                        <label for="institucion" class="form-label">institucion</label>
+                        <select class="form-select" id="institucion" formControlName="institucion"
+                            aria-label="Seleccione el encuestador">
+                            <option value="" disabled selected>Seleccione institucion</option>
+                            <option  *ngFor="let institucion of instituciones" [value]="institucion.id">{{institucion.nombre}}</option>
+                     
+                        </select>
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('institucion', 'required') && isTouched('institucion')">
+                                Seleccione la institucion.
+                            </div>
+                        </small>
+                    </div>
+                    <!-- Resto del formulario -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="formularioAsignar.invalid">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

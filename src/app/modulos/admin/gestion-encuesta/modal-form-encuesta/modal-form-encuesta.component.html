@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="modalEncuesta" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">{{title}} Encuesta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioEncuesta" (ngSubmit)="onSubmit()">
+
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="titulo" formControlName="titulo">
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('titulo', 'required') && isTouched('titulo')">
+                                El título es obligatorio.
+                            </div>
+                            <div *ngIf="hasError('titulo', 'minlength')">
+                                El título debe tener al menos 3 caracteres.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" formControlName="descripcion"
+                            rows="3"></textarea>
+                        <small class="form-text text-danger">
+                            <div *ngIf="hasError('descripcion', 'required') && isTouched('descripcion')">
+                                La descripción es obligatoria.
+                            </div>
+                            <div *ngIf="hasError('descripcion', 'minlength')">
+                                La descripción debe tener al menos 10 caracteres.
+                            </div>
+                        </small>
+                    </div>
+                    <!-- Resto del formulario -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="formularioEncuesta.invalid">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

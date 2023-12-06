@@ -1,0 +1,104 @@
+<div class="wrapper">
+    <!-- sidebar -->
+    <aside id="sidebar" [ngClass]="{collapsed: sidebarService.isCollapsed}">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!-- main component -->
+    <div class="main">
+        <app-navbar></app-navbar>
+        <main>
+            <div class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mt-3">
+                        <h3>Instancias</h3>
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark">
+
+                            </div>
+                            <div class="card-body m-3">
+                                <h3>Lista de instancias</h3>
+                                <div class='table-responsive'>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-primary rounded-0"
+                                            (click)="abrirModalinstancia()">
+                                            Agregar instancia
+                                        </button>
+
+                                    </div>
+
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>N°</th>
+                                                <th>Fecha_inicio</th>
+                                                <th>Fecha_fin</th>
+                                                <th>Estudiante</th>
+                                                <th>Encuesta</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let instancia of instancias let i = index">
+                                                <td>{{i + 1}}</td>
+                                                <td>{{instancia.fecha_inicio}}</td>
+                                                <td>{{instancia.fecha_fin}}</td>
+                                                <td>{{instancia.estudiante_codigo}}</td>
+                                                <td>{{instancia.encuesta_id}}</td>
+                                               
+
+                                                <td>
+
+                                                    <button class="btn btn-sm"
+                                                        [ngClass]="{'btn-success': instancia.estado === 'abierta', 'btn-danger': instancia.estado === 'cerrada'}"
+                                                        type="button" (click)="actualizarEstado(instancia.id)"
+                                                        style="width: 90px;">
+                                                        {{instancia.estado === 'abierta' ? 'Abierta' : 'Cerrada'}}
+                                                    </button>
+
+
+                                                </td>
+                                                <td>
+
+
+                                                    <button class="btn btn-warning btn-sm" type="button"
+                                                        (click)="abrirModalinstanciaEdictar(instancia.id)">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+
+                                                    <button class="btn btn-danger btn-sm" type="button"
+                                                        (click)="eliminarInstancia(instancia.id)">
+                                                        <i class="fas fa-trash-alt btn-sm"></i>
+                                                    </button>
+
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+<app-form-modal-instancia></app-form-modal-instancia>
